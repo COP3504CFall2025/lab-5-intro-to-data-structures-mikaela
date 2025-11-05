@@ -26,7 +26,7 @@ int main() {
     list.AddTail(3);
     list.AddTail(4);
     list.printForward();
-    list.printReverse();
+    list.PrintReverse();
 
 
     return 0;
