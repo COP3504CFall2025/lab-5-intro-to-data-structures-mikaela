@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
 #include <stdexcept>
 #include "Interfaces.hpp"
 
@@ -130,6 +131,17 @@ public:
             resize(capacity_/2);
         }
         return array_[curr_size_ -1];
+    }
+
+    void PrintForward() {
+        for (std::size_t i = 0; i < curr_size_; i++) {
+            std::cout << array_[i];
+        }
+    }
+    void PrintReverse() {
+        for (std::size_t i = curr_size_ - 1; i > 0; i--) {
+            std::cout << array_[i];
+        }
     }
 
 private:
