@@ -21,10 +21,10 @@
 int main() {
 
     LinkedList<int> list;
-    list.addTail(2);
-    list.addHead(1);//testing if it will put it before 2
-    list.addTail(3);
-    list.addTail(4);
+    list.AddTail(2);
+    list.AddHead(1);//testing if it will put it before 2
+    list.AddTail(3);
+    list.AddTail(4);
     list.printForward();
     list.printReverse();
 
