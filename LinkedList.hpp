@@ -22,14 +22,13 @@ public:
 			std::cout << current->data << " ";
 			current = current->next;
 		}
+		std::cout << std::endl;
 	}
 	void PrintReverse() const {
-		Node* current = tail;
-		while (current != head) {
+		for (Node* current = head; current != nullptr; current = current->next) {
 			std::cout << current->data << " ";
-			current = current->prev;
 		}
-		std::cout << current->data << std::endl;
+		std::cout << std::endl;
 	}
 
 	// Accessors
