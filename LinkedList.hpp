@@ -16,14 +16,14 @@ class LinkedList {
 	};
 public:
 	// Behaviors
-	void printForward() const {
+	void PrintForward() const {
 		Node* current = head;
 		while (current != nullptr) {
 			std::cout << current->data << " ";
 			current = current->next;
 		}
 	}
-	void printReverse() const {
+	void PrintReverse() const {
 		Node* current = tail;
 		while (current != head) {
 			std::cout << current->data << " ";
@@ -147,7 +147,7 @@ public:
 		}
 		Clear();
 		for (Node* node = rhs.head; node != nullptr; node = node->next) {
-			addTail(node->data);
+			AddTail(node->data);
 		}
 		return *this;
 	}
@@ -165,7 +165,7 @@ public:
 		tail = nullptr;
 		count = 0;
 		for (Node* node = list.head; node != nullptr; node = node->next) {
-			addTail(node->data);
+			AddTail(node->data);
 		}
 	}
 
