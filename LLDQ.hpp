@@ -45,9 +45,15 @@ public:
 
     // Element Accessors
     const T& front() const override {
+        if (list.getHead() == nullptr) {
+            throw std::runtime_error("LLDQ is empty");
+        }
         return list.getHead()->data;
     }
     const T& back() const override {
+        if (list.getTail() == nullptr) {
+            throw std::runtime_error("LLDQ is empty");
+        }
         return list.getTail()->data;
     }
 
