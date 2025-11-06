@@ -39,7 +39,7 @@ public:
     }
     //copy assignment
     ABQ& operator=(const ABQ& rhs) {
-        if (this != &rhs) {
+        if (this == &rhs) {
             return *this;
         }
         delete[] array_;
@@ -62,7 +62,7 @@ public:
     }
     //move assignment
     ABQ& operator=(ABQ&& rhs) noexcept {
-        if (this != &rhs) {
+        if (this == &rhs) {
             return *this;
         }
         delete[] array_;

@@ -15,22 +15,52 @@ private:
 
 public:
     // Constructor
-    LLDQ();
+    LLDQ() = default;
 
     // Core Insertion Operations
-    void pushFront(const T& item) override;
-    void pushBack(const T& item) override;
+    void pushFront(const T& item) override {
+        list.AddHead(item);
+    }
+    void pushBack(const T& item) override {
+        list.AddTail(item);
+    }
 
     // Core Removal Operations
-    T popFront() override;
-    T popBack() override;
+    T popFront() override {
+        if (list.getHead() == nullptr) {
+            throw std::out_of_range("LLDQ is empty");
+        }
+        T item = list.GetHead();
+        list.RemoveHead();
+        return item;
+    }
+    T popBack() override {
+        if (list.getHead() == nullptr) {
+            throw std::out_of_range("LLDQ is empty");
+        }
+        T item = list.GetTail();
+        list.RemoveTail();
+        return item;
+    }
 
     // Element Accessors
-    const T& front() const override;
-    const T& back() const override;
+    const T& front() const override {
+        return list.GetHead();
+    }
+    const T& back() const override {
+        return list.GetTail();
+    }
 
     // Getter
-    std::size_t getSize() const noexcept override;
+    [[nodiscard]] std::size_t getSize() const noexcept override {
+        return static_cast<std::size_t>(list.getCount());
+    }
+    void PrintForward() {
+        list.PrintForward();
+    }
+    void PrintReverse() {
+        list.PrintReverse();
+    }
 };
 
 
