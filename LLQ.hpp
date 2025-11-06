@@ -21,7 +21,7 @@ public:
     // Deletion
     T dequeue() override {
         if (list.getHead() == nullptr) {
-            throw std::out_of_range("LLQ is empty");
+            throw std::runtime_error("LLQ is empty");
         }
         T item = list.getHead()->data;
         list.RemoveHead();
