@@ -13,7 +13,7 @@ class ABS : public StackInterface<T> {
 public:
     // Big 5 + Parameterized Constructor
     ABS() {
-        capacity_ = 0;
+        capacity_ = 1;
         curr_size_ = 0;
         array_ = new T[capacity_];
     }
