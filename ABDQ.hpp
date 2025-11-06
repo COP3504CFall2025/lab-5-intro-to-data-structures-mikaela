@@ -148,25 +148,31 @@ public:
 
     // Deletion
     T popFront() override {
-        if (size_ > 0) {
-            size_--;
-            return data_[front_];
+        if (size_ == 0) {
+            throw std::runtime_error("empty ABDQ");
         }
-        throw std::runtime_error("empty ABDQ");
+        size_--;
+        return data_[front_];
     }
     T popBack() override {
-        if (size_ > 0) {
-            size_--;
-            return data_[back_];
+        if (size_ == 0) {
+            throw std::runtime_error("empty ABDQ");
         }
-        throw std::runtime_error("empty ABDQ");
+        size_--;
+        return data_[back_];
     }
 
     // Access
     const T& front() const override {
+        if (size_ == 0) {
+            throw std::runtime_error("empty ABDQ");
+        }
         return data_[front_];
     }
     const T& back() const override {
+        if (size_ == 0) {
+            throw std::runtime_error("empty ABDQ");
+        }
         return data_[back_];
     }
 
