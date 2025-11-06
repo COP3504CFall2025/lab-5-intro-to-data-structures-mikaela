@@ -124,7 +124,7 @@ public:
         if (curr_size_ == 0) {
             throw std::runtime_error("ABQ is empty");
         }
-        return array_[curr_size_ - 1];
+        return array_[0];
     }
 
     // Deletion
@@ -133,15 +133,17 @@ public:
             throw std::runtime_error("ABQ is empty");
         }
         T item = array_[0];
-        T data = array_[curr_size_ - 1];
         for (size_t i = 1; i < curr_size_; i++) {
-            data[i-1] = array_[i];
+            array_[i-1] = array_[i];
         }
-        delete[] array_;
-        array_ = data;
         curr_size_--;
-        if (capacity_/4 < curr_size_) {
-            resize(capacity_/2);
+
+        if (capacity_ > 1 && curr_size_ <= capacity_/4) {
+            int new_capacity = capacity_/2;
+            if (new_capacity < 1) {
+                new_capacity = 1;
+            }
+            resize(new_capacity);
         }
         return item;
 
@@ -151,10 +153,12 @@ public:
         for (std::size_t i = 0; i < curr_size_; i++) {
             std::cout << array_[i];
         }
+        std::cout << std::endl;
     }
     void PrintReverse() {
         for (std::size_t i = curr_size_ - 1; i > 0; i--) {
             std::cout << array_[i];
         }
+        std::cout << std::endl;
     }
 };
