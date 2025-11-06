@@ -23,7 +23,7 @@ public:
         if (list.getHead() == nullptr) {
             throw std::out_of_range("LLQ is empty");
         }
-        T item = list.getHead()->item;
+        T item = list.getHead()->data;
         list.RemoveHead();
         return item;
     }
@@ -33,7 +33,7 @@ public:
         if (list.getHead() == nullptr) {
             throw std::runtime_error("LLQ is empty");
         }
-        return list.getHead()->item;
+        return list.getHead()->data;
     }
 
     // Getter

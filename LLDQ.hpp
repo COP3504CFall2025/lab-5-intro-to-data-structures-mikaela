@@ -30,7 +30,7 @@ public:
         if (list.getHead() == nullptr) {
             throw std::out_of_range("LLDQ is empty");
         }
-        T item = list.GetHead();
+        T item = list.getHead();
         list.RemoveHead();
         return item;
     }
@@ -38,17 +38,17 @@ public:
         if (list.getHead() == nullptr) {
             throw std::out_of_range("LLDQ is empty");
         }
-        T item = list.GetTail();
+        T item = list.getTail();
         list.RemoveTail();
         return item;
     }
 
     // Element Accessors
     const T& front() const override {
-        return list.GetHead();
+        return list.getHead();
     }
     const T& back() const override {
-        return list.GetTail();
+        return list.getTail();
     }
 
     // Getter
