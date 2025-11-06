@@ -107,14 +107,16 @@ public:
     }
 
     void resize(size_t new_cap) {
-        if (new_cap > size_) {
+        if (new_cap >= size_) {
             T* new_array = new T[new_cap];
-            for (size_t i =0; i < size_; i++) {
-                new_array[i] = data_[i];
+            for (size_t i = 0; i < size_; i++) {
+                new_array[i] = data_[(front_ + i) % capacity_];
             }
             delete[] data_;
             data_ = new_array;
             capacity_ = new_cap;
+            front_ = 0;
+            back_ = size_;
         }
     }
 
@@ -126,13 +128,8 @@ public:
         if (size_ == 0) {
             resize(1);
         }
-        T newData = new T[capacity_+1];
-        newData[0] = item;
-        for (std::size_t i = 1; i < size_+1; i++) {
-            newData[i] = data_[i-1];
-        }
-        delete[] data_;
-        data_ = newData;
+        front_ = (front_ + capacity_ - 1) % capacity_;
+        data_[front_] = item;
         size_++;
     }
     void pushBack(const T& item) override {
@@ -142,7 +139,8 @@ public:
         if (size_ == 0) {
             resize(1);
         }
-        data_[size_] = item;
+        data_[back_] = item;
+        back_ = (back_ + 1) % capacity_;
         size_++;
     }
 
@@ -151,15 +149,33 @@ public:
         if (size_ == 0) {
             throw std::runtime_error("empty ABDQ");
         }
+        T item = data_[front_];
+        front_ = (front_ + 1) % capacity_;
         size_--;
-        return data_[front_];
+        if (capacity_ > 1 && size_ <= capacity_/4) {
+            int new_capacity = capacity_/2;
+            if (new_capacity < 1) {
+                new_capacity = 1;
+            }
+            resize(new_capacity);
+        }
+        return item;
     }
     T popBack() override {
         if (size_ == 0) {
             throw std::runtime_error("empty ABDQ");
         }
+        back_ = (back_ + capacity_ - 1) % capacity_;
+        T item = data_[back_];
         size_--;
-        return data_[back_];
+        if (capacity_ > 1 && size_ <= capacity_/4) {
+            int new_capacity = capacity_/2;
+            if (new_capacity < 1) {
+                new_capacity = 1;
+            }
+            resize(new_capacity);
+        }
+        return item;
     }
 
     // Access
@@ -173,7 +189,7 @@ public:
         if (size_ == 0) {
             throw std::runtime_error("empty ABDQ");
         }
-        return data_[back_ - 1];
+        return data_[(back_ + capacity_ - 1) % capacity_];
     }
 
     // Getters
