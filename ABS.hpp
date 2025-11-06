@@ -72,7 +72,7 @@ public:
     ~ABS() noexcept override {
         delete[] array_;
         array_ = nullptr;
-        capacity_ = 0;
+        capacity_ = 1;
         curr_size_ = 0;
     }
 
@@ -126,11 +126,16 @@ public:
         if (curr_size_ == 0) {
             throw std::runtime_error("empty ABS");
         }
+        T item = array_[curr_size_ - 1];
         curr_size_--;
-        if (capacity_/4 < curr_size_) {
-            resize(capacity_/2);
+        if (capacity_ > 1 && curr_size_ > 0 && curr_size_ <= capacity_/4) {
+            int new_capacity = capacity_/2;
+            if (new_capacity < 1) {
+                new_capacity = 1;
+            }
+            resize(new_capacity);
         }
-        return array_[curr_size_ -1];
+        return item;
     }
 
     void PrintForward() {

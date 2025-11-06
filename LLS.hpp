@@ -33,7 +33,7 @@ public:
         if (list.getHead() == nullptr) {
             throw std::runtime_error("LLS: Empty list");
         }
-        return list.getHead()->data;
+        return list.getTail()->data;
     }
 
     //Getters
