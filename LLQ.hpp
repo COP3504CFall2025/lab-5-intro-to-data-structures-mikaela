@@ -31,7 +31,7 @@ public:
     // Access
     T peek() const override {
         if (list.getHead() == nullptr) {
-            throw std::out_of_range("LLQ is empty");
+            throw std::runtime_error("LLQ is empty");
         }
         return list.getHead()->item;
     }

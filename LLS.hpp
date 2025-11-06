@@ -21,7 +21,7 @@ public:
     // Deletion
     T pop() override {
         if (list.getHead() == nullptr) {
-            throw std::out_of_range("LLS: Empty list");
+            throw std::runtime_error("LLS: Empty list");
         }
         T item = list.getTail()->data;
         list.RemoveTail();
@@ -31,7 +31,7 @@ public:
     // Access
     T peek() const override {
         if (list.getHead() == nullptr) {
-            throw std::out_of_range("LLS: Empty list");
+            throw std::runtime_error("LLS: Empty list");
         }
         return list.getHead()->data;
     }

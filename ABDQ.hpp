@@ -152,14 +152,14 @@ public:
             size_--;
             return data_[front_];
         }
-        throw std::out_of_range("empty ABDQ");
+        throw std::runtime_error("empty ABDQ");
     }
     T popBack() override {
         if (size_ > 0) {
             size_--;
             return data_[back_];
         }
-        throw std::out_of_range("empty ABDQ");
+        throw std::runtime_error("empty ABDQ");
     }
 
     // Access

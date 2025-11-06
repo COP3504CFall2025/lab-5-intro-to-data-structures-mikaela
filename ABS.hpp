@@ -117,14 +117,14 @@ public:
 
     T peek() const override {
         if (curr_size_ == 0) {
-            throw std::out_of_range("empty ABS");
+            throw std::runtime_error("empty ABS");
         }
         return array_[curr_size_ - 1];
     }
 
     T pop() override {
         if (curr_size_ == 0) {
-            throw std::out_of_range("empty ABS");
+            throw std::runtime_error("empty ABS");
         }
         curr_size_--;
         if (capacity_/4 < curr_size_) {

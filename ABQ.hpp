@@ -122,7 +122,7 @@ public:
     // Access
     T peek() const override {
         if (curr_size_ == 0) {
-            throw std::out_of_range("ABQ is empty");
+            throw std::runtime_error("ABQ is empty");
         }
         return array_[curr_size_ - 1];
     }
@@ -130,7 +130,7 @@ public:
     // Deletion
     T dequeue() override {
         if (curr_size_ == 0) {
-            throw std::out_of_range("ABQ is empty");
+            throw std::runtime_error("ABQ is empty");
         }
         T item = array_[0];
         T data = array_[curr_size_ - 1];
